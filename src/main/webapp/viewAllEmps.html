@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ERS Employee Info</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- <script>
+String message = null;
+String sessionID = null;
+Cookie[] cookies = request.getCookies();
+if(cookies != null){
+	for(Cookie cookie : cookies){
+		if(cookie.getName().equals("message")) message = cookie.getValue();
+		if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+	}
+}
+</script> -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+		</button>
+		<a class="navbar-brand" href="#">ERS</a>
+    </div>
+	<div class="collapse navbar-collapse" id="myNavbar">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="#">Change Info</a></li>
+			<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="./reimbursement.html">Menu
+				<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="./changeStatus.html">Reimbursement Status</a></li>
+						<li><a href="./viewAllEmps.html">Employees/Manager Change Info Form</a></li>
+						<li><a href="#">Receipts</a></li>
+					</ul>
+			</li>
+		</ul>
+		<form action="LogoutServlet" method="post"><input class="btn btn-info navbar-btn" type="submit" value="Logout" ></form>
+		<!-- <a href="../logout.html"><button class="btn btn-info navbar-btn">Loggout</button></a> -->
+	</div>
+</nav>
+<br><br><br><br>
+<div class="jumbotron container">
+	<h1>Manager Information Change Form</h1>
+</div>
+<form method="post" action="MgrInfoServlet">
+<div class="container form-group">
+	<br>
+	Manager ID:
+	<input class="form-control" type="text" name="mgrId" placeholder="Enter Manager ID">
+	<br>
+	Username:
+	<input class="form-control" type="text" name="userName" placeholder="Enter Username">
+	<br>
+	Password:
+	<input class="form-control" type="password" name="pw" placeholder="Enter Password">
+	<br>
+	First Name:
+	<input class="form-control" type="text" name="fName" placeholder="Enter First Name">
+	<br>
+	Last Name:
+	<input class="form-control" type="text" name="lName" placeholder="Enter Last Name">
+	<br>
+	<!-- Manager ID:
+	<input class="form-control" type="text" name="mId" placeholder="Enter Manager ID">
+	<br> -->
+	<!-- <div class="container custom-control custom-radio">
+		<input type="radio" class="custom-control-input" id="defaultUnchecked" name="empOrMgr" value="mgr">
+	 	<label class="custom-control-label" for="defaultUnchecked">Manager</label>
+	 	<input type="radio" class="custom-control-input" id="defautChecked" name="empOrMgr" value="emp" checked>
+	 	<label class="custom-control-label" for="defaultChecked">Employee</label>
+		<!-- <button class="btn-danger">Submit</button> 
+	</div> -->
+	<button class="btn-danger">Submit</button>
+</div>
+</form>
+
+<div class="container-fluid">
+	<h3>Employee Information</h3>
+	<!-- <form>
+	<div class="form-group"><label for="listId">Reimbursement ID: </label><input type="text" id="listId"><br></div>
+	<div class="form-group"><label for="listUname">Username: </label><input type="text" id="listUname"><br></div>
+	<div class="form-group"><label for="listAmount">Amount: </label><input type="text" id="listAmount"><br></div>
+	<div class="form-group"><label for="listeId">Employee ID: </label><input type="text" id="listeId"><br></div>
+	<div class="form-group"><label for="listStatus">Status: </label><input type="text" id="listStatus"><br></div>
+	<button type="button" class="btn btn-info" id="createReimBtn">Create</button>
+	</form> -->
+	<br>
+	<table class="infotable">
+		<thead>
+			<tr>
+				<th>EmployeeId</th>
+				<th>Username</th>
+				<th>Password</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>ManagerId</th>
+			</tr>
+		</thead>
+		<tbody id="iTable">
+			
+		</tbody>
+	</table>
+	<button class="btn btn-info" id="getInfoButton" type="button">Check Information</button>
+	<h3>Manager Information</h3>
+	<br>
+	<table class="infotable">
+		<thead>
+			<tr>
+				<th>ManagerId</th>
+				<th>Username</th>
+				<th>Password</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+			</tr>
+		</thead>
+		<tbody id="imTable">
+			
+		</tbody>
+	</table>
+	<button class="btn btn-info" id="getMgrInfoButton" onclick="getMgrsById()" type="button">Check Information</button>
+</div>
+<!-- <form method="post" action="GetEmpForMgrById"> -->
+<form action="GetEmpForMgrById" method="POST">
+<div class="container form-group">
+	<br>
+	Lookup By Employee ID:
+	<input class="form-control" type="text" name="empId" id="empId" placeholder="Enter Employee ID">
+	<br>
+	<button class="btn-danger" onclick="getEmpForMgrById()">Submit</button>
+</div>
+</form>
+<div class="container-fluid">
+	<h3>Specific Employee Information</h3>
+	<br>
+	<table class="infoformgrtable">
+		<thead>
+			<tr>
+				<th>EmployeeId</th>
+				<th>Username</th>
+				<th>Password</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>ManagerId</th>
+			</tr>
+		</thead>
+		<tbody id="ifmTable">
+			
+		</tbody>
+	</table>
+	<!-- <button class="btn btn-info" id="getInfoForMgrButton" onclick="getEmpForMgrById()" type="button">Check Information</button> -->
+</div>
+<script src="./Scripts/getEmpForMgrById.js" type="text/javascript"></script>
+<script src="./Scripts/getManagerById.js" type="text/javascript"></script>
+<script src="./Scripts/getAllEmployeeInfo.js" type="text/javascript"></script>
+</body>
+</html>

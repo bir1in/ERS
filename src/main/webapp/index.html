@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ERS Login</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+	<ul class="nav navbar-nav navbar-right">
+		<li><a href="./signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+</nav>
+<div class="jumbotron container">
+	<h1>Login</h1>
+</div>
+<form method="post" action="LoginServlet">
+<div class="container form-group">
+	<br>
+	Username:
+	<input class="form-control" type="text" name="userName" placeholder="Enter Username">
+	<br>
+	Password:
+	<input class="form-control" type="password" name="pw" placeholder="Enter Password">
+	<br>
+	Employee ID:
+	<input class="form-control" type="text" name="empId" placeholder="Enter Password">
+	<br>
+</div>
+<div class="container custom-control custom-radio">
+	<input type="radio" class="custom-control-input" id="defaultUnchecked" name="empOrMgr" value="mgr">
+ 	<label class="custom-control-label" for="defaultUnchecked">Manager</label>
+ 	<input type="radio" class="custom-control-input" id="defautChecked" name="empOrMgr" value="emp" checked>
+ 	<label class="custom-control-label" for="defaultChecked">Employee</label>
+	<button class="btn-danger">Submit</button>
+</div>
+</form>
+</body>
+</html>

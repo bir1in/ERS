@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ERS Logout</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
+function ClearHistory()
+{
+     var backlen = history.length;
+     history.go(-backlen);
+     window.location.href = "./index.html";
+}
+</script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+	<ul class="nav navbar-nav navbar-right">
+		<li><a href="./signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		<li><a href="./index.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+</nav>
+<div class="jumbotron container">
+	<h1>Logout</h1>
+	<p>You have logged out. To log in, click the login button at the top of the page or you can sign up as a new employee.</p>
+</div>
+</body>
+</html>

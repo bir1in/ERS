@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ERS Reimbursement Status</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- <script>
+String message = null;
+String sessionID = null;
+Cookie[] cookies = request.getCookies();
+if(cookies != null){
+	for(Cookie cookie : cookies){
+		if(cookie.getName().equals("message")) message = cookie.getValue();
+		if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+	}
+}
+</script> -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+		</button>
+		<a class="navbar-brand" href="#">ERS</a>
+    </div>
+	<div class="collapse navbar-collapse" id="myNavbar">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="#">Reimbursement Status</a></li>
+			<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="./reimbursement.html">Menu
+				<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="./changeStatus.html">Reimbursement Status</a></li>
+						<li><a href="./viewAllEmps.html">Employees/Manager Change Info Form</a></li>
+						<li><a href="#">Receipts</a></li>
+					</ul>
+			</li>
+		</ul>
+		<form action="LogoutServlet" method="post"><input class="btn btn-info navbar-btn" type="submit" value="Logout" ></form>
+	</div>
+</nav>
+<br><br><br><br>
+<div class="jumbotron container">
+	<h1>Reimbursement Status Change Form</h1>
+</div>
+<form method="post" action="ReimbursementStatusServlet">
+<div class="container form-group">
+	<br>
+	<!-- Reimbursement ID:
+	<input class="form-control" type="text" name="reimId" placeholder="Enter Reimbursement ID">
+	<br> -->
+	Reimbursement ID:
+	<input class="form-control" type="text" name="empId" placeholder="Enter Reimbursement ID">
+	<br>
+	Reimbursement Status:
+	<!-- <input class="form-control" type="text" name="reimStatus" placeholder="Enter Reimbursement Status with your ID">
+	<br> -->
+	<div class="container custom-control custom-radio">
+		<input type="radio" class="custom-control-input" id="defaultUnchecked" name="apOrDen" value="approve">
+	 	<label class="custom-control-label" for="defaultUnchecked">Approve</label>
+	 	<input type="radio" class="custom-control-input" id="defautChecked" name="apOrDen" value="deny" checked>
+	 	<label class="custom-control-label" for="defaultChecked">Deny</label>
+		<!-- <button class="btn-danger">Submit</button> -->
+	</div>
+	<button class="btn-danger">Submit</button>
+</div>
+</form>
+
+<div class="container-fluid">
+	<h3>Reimbursement Status</h3>
+	<!-- <form>
+	<div class="form-group"><label for="listId">Reimbursement ID: </label><input type="text" id="listId"><br></div>
+	<div class="form-group"><label for="listUname">Username: </label><input type="text" id="listUname"><br></div>
+	<div class="form-group"><label for="listAmount">Amount: </label><input type="text" id="listAmount"><br></div>
+	<div class="form-group"><label for="listeId">Employee ID: </label><input type="text" id="listeId"><br></div>
+	<div class="form-group"><label for="listStatus">Status: </label><input type="text" id="listStatus"><br></div>
+	<button type="button" class="btn btn-info" id="createReimBtn">Create</button>
+	</form> -->
+	<br>
+	<table class="reimtable">
+		<thead>
+			<tr>
+				<th>ReimbursementId</th>
+				<th>Username</th>
+				<th>Amount</th>
+				<th>Employee Id</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody id="rTable">
+			
+		</tbody>
+	</table>
+	<button class="btn btn-info" id="getReimButton" type="button">Check Reimbursement</button>
+	
+</div>
+
+<script src="./Scripts/getAllReimbursements.js" type="text/javascript"></script>
+</body>
+</html>
